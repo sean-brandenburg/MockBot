@@ -4,7 +4,11 @@ import config
 from tweepy import OAuthHandler
 from textblob import TextBlob
 
+
+
 class TwitterClient(object):
+    handle = "@MockBot1"
+
 	def __init__(self):
 		# keys and tokens from the Twitter Dev Console
 		consumer_key = config.twitConsumerKey
