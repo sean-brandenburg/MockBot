@@ -3,12 +3,12 @@ import config
 import tweepy
 import bot
 from tweepy import OAuthHandler
-from twxtblob import TextBlob
+from textblob import TextBlob
 from mock import mockText
 
 def main():
     # creating object of TwitterClient Class
-    api = TwitterClient()
+    api = bot.TwitterClient()
     # calling function to get tweets
     tweets = api.get_tweets(query = 'Donald Trump', count = 200)
 

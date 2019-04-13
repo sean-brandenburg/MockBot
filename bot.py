@@ -1,4 +1,4 @@
-class TwitterClient(Object):
+class TwitterClient:
     def __init__self(self):
 
         consumer_key = config.twitConsumerKey
