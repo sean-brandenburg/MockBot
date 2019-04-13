@@ -1,3 +1,11 @@
+import re
+import config
+import tweepy
+import bot
+from tweepy import OAuthHandler
+from textblob import TextBlob
+from mock import mockText
+
 class TwitterClient:
     def __init__self(self):
 
@@ -28,9 +36,9 @@ class TwitterClient:
         else:
             return 'negative'
 
-        def get_tweets(self, query, count = 10):
-        # empty list to store parsed tweets
-            tweets = []
+    def get_tweets(self, query, count = 10):
+    # empty list to store parsed tweets
+        tweets = []
 
         try:
             # call twitter api to fetch tweets
