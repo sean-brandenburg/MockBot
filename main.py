@@ -3,6 +3,7 @@ import config
 import tweepy
 from tweepy import OAuthHandler
 from twxtblob import TextBlob
+from mock import mockText
 
 class TwitterClient(Object):
     def __init__self(self):
