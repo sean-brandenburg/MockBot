@@ -37,13 +37,13 @@ class TwitterClient(object):
 		else:
 			return 'negative'
 
-	def get_tweets(self, query, count = 10):
+	def get_tweets(self, user, count = 1):
 		# empty list to store parsed tweets
 		tweets = []
 
 		try:
 			# call twitter api to fetch tweets
-			fetched_tweets = self.api.search(q = query, count = count)
+			fetched_tweets = self.api.user_timeline(id=user, count=count, include_rts=True)
 
 			# parsing tweets one by one
 			for tweet in fetched_tweets:
@@ -69,3 +69,6 @@ class TwitterClient(object):
 		except tweepy.TweepError as e:
 			# print error (if any)
 			print("Error : " + str(e))
+
+    def mockReply(self, user, text):
+        if(get_tweet_sentiment()):
