@@ -30,7 +30,7 @@ class TwitterClient(Object):
 
         def get_tweets(self, query, count = 10):
         # empty list to store parsed tweets
-        tweets = []
+            tweets = []
 
         try:
             # call twitter api to fetch tweets
