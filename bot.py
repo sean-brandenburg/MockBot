@@ -18,10 +18,6 @@ class TwitterClient(Object):
             print("Error: Authentication Failed")
 
     def get_tweet_sentiment(self, tweet):
-        '''
-        Utility function to classify sentiment of passed tweet
-        using textblob's sentiment method
-        '''
         # create TextBlob object of passed tweet text
         analysis = TextBlob(self.clean_tweet(tweet))
         # set sentiment
@@ -33,9 +29,6 @@ class TwitterClient(Object):
             return 'negative'
 
         def get_tweets(self, query, count = 10):
-        '''
-        Main function to fetch tweets and parse them.
-        '''
         # empty list to store parsed tweets
         tweets = []
 
