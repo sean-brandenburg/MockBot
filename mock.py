@@ -1,6 +1,6 @@
 def mockText(original, handle):
     newtext = handle + " "
-    i = newtext.len()
+    i = len(newtext)
     for character in original:
         if(i == 160):
             return newtext

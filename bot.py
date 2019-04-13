@@ -3,6 +3,8 @@ import tweepy
 import config
 from tweepy import OAuthHandler
 from textblob import TextBlob
+from mock import mockText
+
 
 
 
@@ -42,7 +44,6 @@ class TwitterClient(object):
 
     def get_tweets(self, user, count = 1):
         # empty list to store parsed tweets
-        tweets = []
 
         try:
             # call twitter api to fetch tweets
@@ -59,20 +60,13 @@ class TwitterClient(object):
                 parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
 
                 # appending parsed tweet to tweets list
-                if tweet.retweet_count > 0:
-                    # if tweet has retweets, ensure that it is appended only once
-                    if parsed_tweet not in tweets:
-                        tweets.append(parsed_tweet)
-                else:
-                    tweets.append(parsed_tweet)
-
-            # return parsed tweets
-            return tweets
+                            # return parsed tweets
+            return parsed_tweet
 
         except tweepy.TweepError as e:
             # print error (if any)
             print("Error : " + str(e))
 
     def mockReply(self, user, text):
-        self.api.update_status(text)
+        self.api.update_status(mockText(original = text, handle = user))
         print("Tweet posted.")

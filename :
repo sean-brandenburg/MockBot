@@ -1,0 +1,23 @@
+import re
+import config
+import tweepy
+import bot
+from tweepy import OAuthHandler
+from textblob import TextBlob
+from mock import mockText
+
+def main():
+    while True:
+        name = input("Enter the name of the target account: ")
+        # creating object of TwitterClient Class
+        api = bot.TwitterClient()
+        # calling function to get tweets
+        tweets = api.get_tweets(user = name, count = 1)
+
+        if tweet['sentiment'] == 'negative']:
+            print(tweets[0])
+            api.mockReply(user="@GetMocked", tweet['text'])
+
+if __name__ == "__main__":
+    # calling main function
+    main()
