@@ -7,7 +7,7 @@ from textblob import TextBlob
 
 
 class TwitterClient(object):
-    handle = "MockBot1"
+    handle = "@MockBot1"
 
 	def __init__(self):
 		# keys and tokens from the Twitter Dev Console

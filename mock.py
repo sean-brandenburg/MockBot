@@ -1,5 +1,5 @@
 def mockText(original, handle):
-    newtext = "@" + handle + " "
+    newtext = handle + " "
     i = newtext.len()
     for character in original:
         if i == 160:
