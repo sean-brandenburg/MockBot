@@ -1,6 +1,7 @@
 import re
 import tweepy
 import config
+import time
 from tweepy import OAuthHandler
 from textblob import TextBlob
 from mock import mockText
@@ -42,12 +43,12 @@ class TwitterClient(object):
         else:
             return 'negative'
 
-    def get_tweets(self, user, count = 1):
+    def get_tweets(self, user, count=1):
         # empty list to store parsed tweets
 
         try:
             # call twitter api to fetch tweets
-            fetched_tweets = self.api.user_timeline(id=user, count=count, include_rts=True)
+            fetched_tweets = self.api.user_timeline(id=user, count=count, include_rts=False)
 
             # parsing tweets one by one
             for tweet in fetched_tweets:
@@ -58,15 +59,38 @@ class TwitterClient(object):
                 parsed_tweet['text'] = tweet.text
                 # saving sentiment of tweet
                 parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
+                #saving tweet id
+                parsed_tweet['id'] = tweet.id
+                parsed_tweet['time'] = tweet.created_at
 
-                # appending parsed tweet to tweets list
-                            # return parsed tweets
+            # return parsed tweets
             return parsed_tweet
 
         except tweepy.TweepError as e:
             # print error (if any)
             print("Error : " + str(e))
 
-    def mockReply(self, user, text):
-        self.api.update_status(mockText(original = text, handle = user))
-        print("Tweet posted.")
+    def mockReply(self, user, text, id):
+        self.api.update_status(mockText(original=text, handle=user), in_reply_to_status_id=id)
+        print("Reply posted.")
+
+    def loop(self, user):
+        tweets = self.get_tweets(user=user, count=1)
+        print(user + " said: " + tweets['text'])
+        if tweets['sentiment'] == 'negative':
+            self.mockReply(text=tweets['text'], user=user, id=tweets['id'])
+
+        while(1):
+            tweetTime = tweets['time']
+
+            print("Bot waiting...")
+            # bot sleeps for x minutes before reading another tweet
+            time.sleep(60)
+
+            tweets = self.get_tweets(user=user, count=1)
+            print(user + " said: " + tweets['text'])
+            print("Semtiment" + tweets['sentiment'])
+
+            if tweetTime != tweets['time']:
+                if tweets['sentiment'] == 'negative':
+                    self.mockReply(text=tweets['text'], user=user, id=tweets['id'])
