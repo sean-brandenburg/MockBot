@@ -1,4 +1,4 @@
-# MockBot
+# MockBot (Junkathon 2019)
 
 HEllo THERe TRAVeLeR! tHis litTle tWItter BOT wilL PesTEr WHOmEvER YOu desirE WITH unnEcEsSARiLy MoCkIng comMENTs IN "SpOnGEcAse" IN RESPOnSe to aNY RemOTeLY nEgaTiVe tWEet.
 
